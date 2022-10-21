@@ -1,0 +1,25 @@
+---
+name: CI
+'on':
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout out the codebase
+        uses: actions/checkout@v3
+
+      - name: Test building image.
+        run: docker build -t docker-almalinux9-ansible .
+
+      - name: Run the built image.
+        run: docker run --name test-container --detach --privileged --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume /var/lib/docker/aufs:/var/lib/docker/aufs/ docker-almalinux9-ansible
+
+      - name: Verify Ansible is accessible in the built image.
+        run: docker exec -ti test-container ansible --version
