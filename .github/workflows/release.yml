@@ -21,7 +21,7 @@ jobs:
         run: docker run --name test-container --detach --privileged --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume /var/lib/docker/aufs:/var/lib/docker/aufs/ docker-almalinux9-ansible
 
       - name: Verify Ansible is accessible in the built image.
-        run: docker exec -ti test-container ansible --version
+        run: docker exec --tty test-container env TERM=xterm ansible --version
 
   release:
     name: Release
