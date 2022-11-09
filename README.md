@@ -17,8 +17,8 @@ To build the image on your own locally, do the following:
 ## How to Use
 
   1. [Install Docker](https://docs.docker.com/engine/installation/).
-  2. Build image via `docker build -t docker-almalinux9-ansible .`
-  3. Run a container from the image: `docker run --detach --privileged --volume /sys/fs/cgroup:/sys/fs/cgroup:ro --volume /var/lib/docker/aufs:/var/lib/docker/aufs/ docker-almalinux9-ansible:latest`
+  2. Use pre-build image via `docker image pull kirillzak/docker-almalinux9-ansible:latest` or build image via `docker build -t docker-almalinux9-ansible .`
+  3. Run a container from the image: `docker run --detach --privileged --volume /sys/fs/cgroup:/sys/fs/cgroup:ro docker-almalinux9-ansible:latest`
 
 ## Author
 
